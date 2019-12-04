@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status = "info">
+
+    <Properties>
+        <property name = "LOG_DIR">web/logs</property>
+        <property name = "ARCHIVE_LOG_DIR">${LOG_DIR}/archive</property>
+        <property name = "pattern_console_file">%d{yyyy-MM-dd HH:mm:ss} [%t] %-5level %logger{5} - %msg%n</property>
+    </Properties>
+
+    <ThresholdFilter level = "trace"/>
+
+    <Appenders>
+            <Console name = "Console" target = "SYSTEM_OUT">
+                <PatternLayout pattern = "${pattern_console_file}"/>
+            </Console>
+
+            <RollingFile name = "File" fileName = "web/logs/log.log" append = "true"
+                filePattern = "web/logs/${date:yyyy-MM-dd}/%d{yyyy-MM-dd_HH-mm}_%i.log">
+                <PatternLayout pattern = "${pattern_console_file}"/>
+                <Policies>
+                    <SizeBasedTriggeringPolicy size = "20 KB"/>
+                </Policies>
+                <DefaultRolloverStrategy max = "10"/>
+            </RollingFile>
+    </Appenders>
+
+    <Loggers>
+            <Logger name = "Log_Console" level = "debug" additivity = "false">
+                    <AppenderRef ref = "Console"/>
+            </Logger>
+            <Logger name = "Log_File" level = "debug" additivity = "false">
+                <AppenderRef ref = "File"/>
+            </Logger>
+            <Root level = "debug">
+                <AppenderRef ref = "File"/>
+                <AppenderRef ref = "Console" level = "trace"/>
+            </Root>
+    </Loggers>
+
+</Configuration>
