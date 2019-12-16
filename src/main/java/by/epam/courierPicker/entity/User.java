@@ -11,8 +11,17 @@ public class User extends Entity{
     private String lastName;
     private String email;
     private RoleType role;
+    private String state;
 
     public User() {}
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
+    }
 
     public int getId() {
         return id;
@@ -114,6 +123,11 @@ public class User extends Entity{
 
         public Builder buildRole(RoleType role) {
             user.setRole(role);
+            return this;
+        }
+
+        public Builder buildState(String state) {
+            user.setState(state);
             return this;
         }
 

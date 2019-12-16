@@ -35,7 +35,7 @@ public enum UserOfferDaoImpl implements UserOfferDao {
     private static final String SQL_UPDATE_STATUS_BY_ID =
             "UPDATE courierPicker.user_offer SET status = ? WHERE (id_offer = ?)";
     private static final String SQL_SELECT_OFFERS_BY_USER_ID =
-            "SELECT user_offer.id_offer,user_offer.id_user,needed_couriers_number,active_couriers_number,user_offer.status,user_offer.comment,user_offer_courier.comment FROM courierPicker.user_offer INNER JOIN user_offer_courier USING (id_offer) WHERE (user_offer.id_user = ?)";
+            "SELECT user_offer.id_offer,user_offer.id_user,needed_couriers_number,active_couriers_number,user_offer.status,user_offer.comment,user_offer_courier.comment FROM courierPicker.user_offer LEFT JOIN user_offer_courier USING (id_offer) WHERE (user_offer.id_user = ?)";
     private static final String SQL_SELECT_BY_ID =
             "SELECT status FROM courierPicker.user_offer_courier WHERE (id_offer = ?) AND (id_user = ?)";
     private static final String SQL_SEND_OFFER =
@@ -61,7 +61,7 @@ public enum UserOfferDaoImpl implements UserOfferDao {
     private static final String SQL_SELECT_COURIERS_BY_OFFER_ID =
             "SELECT id_user, login, email, firstname, lastname, comment FROM user INNER JOIN user_offer_courier USING (id_user) WHERE (id_offer = ?) AND (status = ?)";
     private static final String SQL_SELECT_OFFERS_BY_COURIER_ID =
-            "SELECT id_offer,user_offer.id_user,needed_couriers_number,active_couriers_number,accept_date,user_offer_courier.comment,user_offer.comment FROM user_offer INNER JOIN user_offer_courier USING (id_offer) WHERE (user_offer_courier.id_user = ?) AND (user_offer_courier.status = ?)";
+            "SELECT id_offer,user_offer.id_user,needed_couriers_number,active_couriers_number,accept_date,user_offer_courier.comment,user_offer.comment FROM user_offer INNER JOIN user_offer_courier USING (id_offer) WHERE (user_offer_courier.id_user = ?) AND (user_offer_courier.status = ?) AND (user_offer.status != ?)";
     private static final String SQL_SELECT_OFFERS_BY_USER_ID_AND_STATUS =
             "SELECT id_offer, user_offer_courier.id_user, accept_date,finish_date,user_offer.comment,user_offer_courier.comment FROM user_offer INNER JOIN user_offer_courier USING (id_offer) WHERE (user_offer.id_user = ?) AND (user_offer_courier.status = ?)";
     private static final String SQL_SELECT_OFFERS_BY_COURIER_ID_AND_STATUS =
@@ -149,6 +149,7 @@ public enum UserOfferDaoImpl implements UserOfferDao {
             statement = connection.prepareStatement(SQL_SELECT_OFFERS_BY_COURIER_ID);
             statement.setInt(1, idUser);
             statement.setString(2, ParamName.STATUS_ACCEPTED_PARAM);
+            statement.setString(3, ParamName.STATUS_DELETED_PARAM);
             resultSet = statement.executeQuery();
             while (resultSet.next()) {
                 UserOffer userOffer = new UserOffer();

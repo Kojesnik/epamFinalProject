@@ -31,6 +31,9 @@ public class LoginCommand implements ActionCommand {
                 page = Path.MAIN_PATH;
             } else {
                 request.setAttribute(AttributeName.ERROR_LOGIN_PASS, ErrorName.LOGIN_ERROR);
+                if (req.get(AttributeName.ERROR_BLOCKED_ACCOUNT) != null) {
+                    request.setAttribute(AttributeName.ERROR_BLOCKED_ACCOUNT, ErrorName.USER_BLOCKED);
+                }
                 page = Path.LOGIN_PATH;
             }
             logger.info("Redirect to " + page);

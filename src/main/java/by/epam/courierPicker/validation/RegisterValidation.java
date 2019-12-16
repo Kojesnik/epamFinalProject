@@ -2,6 +2,7 @@ package by.epam.courierPicker.validation;
 
 import by.epam.courierPicker.constant.AttributeName;
 import by.epam.courierPicker.constant.ErrorName;
+import by.epam.courierPicker.constant.ParamName;
 import by.epam.courierPicker.dao.impl.UserDaoImpl;
 import by.epam.courierPicker.exception.DaoException;
 import org.apache.logging.log4j.LogManager;
@@ -26,6 +27,9 @@ public class RegisterValidation {
             try {
                 if (UserDaoImpl.INSTANCE.findUserByLogin(login) != null) {
                     req.put(AttributeName.ERROR_LOGIN_REGISTER, ErrorName.LOGIN_ALREADY_EXISTS);
+                    if (UserDaoImpl.INSTANCE.findUserByLogin(login).getState().equals(ParamName.STATUS_BLOCKED_PARAM)) {
+                        req.put(AttributeName.ERROR_LOGIN_REGISTER, ErrorName.USER_BLOCKED);
+                    }
                 }
             } catch (DaoException ex) {
                 logger.error(ex.getMessage());

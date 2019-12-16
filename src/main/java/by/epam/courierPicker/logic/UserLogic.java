@@ -27,12 +27,15 @@ public enum UserLogic {
             password = Encoding.encodePassword(password);
             User user = UserDaoImpl.INSTANCE.findUserByLogin(login);
             Map<String, String> req = new HashMap();
-            if (user != null && user.getPassword().equals(password)) {
+            if (user != null && user.getPassword().equals(password) && !RegisterValidation.loginValidation(login).get(AttributeName.ERROR_LOGIN_REGISTER).equals(ErrorName.USER_BLOCKED)) {
                 req.put(ParamName.ROLE_PARAM, user.getRole().toString().toLowerCase());
                 req.put(ParamName.STATUS_PARAM, ParamName.STATUS_AUTORESIZED_PARAM);
                 req.put(ParamName.ID_USER_PARAM, Integer.toString(UserDaoImpl.INSTANCE.findUserIdByLogin(user.getLogin())));
             } else {
                 req.put(AttributeName.ERROR_LOGIN_PASS, ErrorName.LOGIN_ERROR);
+                if (RegisterValidation.loginValidation(login).get(AttributeName.ERROR_LOGIN_REGISTER) != null && RegisterValidation.loginValidation(login).get(AttributeName.ERROR_LOGIN_REGISTER).equals(ErrorName.USER_BLOCKED)) {
+                    req.put(AttributeName.ERROR_BLOCKED_ACCOUNT, ErrorName.USER_BLOCKED);
+                }
             }
             return req;
         } catch (DaoException ex) {
@@ -145,6 +148,26 @@ public enum UserLogic {
             }
             return req;
         } catch (DaoException ex) {
+            logger.error("Dao exception " + ex.getMessage());
+            throw new LogicException(ex.getMessage());
+        }
+    }
+
+    public boolean blockUser(Integer idUser) throws LogicException {
+        try {
+            UserDaoImpl.INSTANCE.updateStateById(idUser, ParamName.STATUS_BLOCKED_PARAM);
+            return true;
+        } catch (DaoException ex) {
+            logger.error("Dao exception " + ex.getMessage());
+            throw new LogicException(ex.getMessage());
+        }
+    }
+
+    public boolean unblockUser(Integer idUser) throws LogicException {
+        try {
+            UserDaoImpl.INSTANCE.updateStateById(idUser, ParamName.STATUS_ACTIVE_PARAM);
+            return true;
+        }catch (DaoException ex) {
             logger.error("Dao exception " + ex.getMessage());
             throw new LogicException(ex.getMessage());
         }

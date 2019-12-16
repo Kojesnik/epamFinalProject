@@ -35,14 +35,6 @@ public class UpdateProfileCommand implements ActionCommand {
         try {
             logger.info("RegisterCommand executed");
             String page = "";
-            try {
-                Part part = request.getPart("file");
-                InputStream inputStream = part.getInputStream();
-            } catch (ServletException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
             Map req = UserLogic.INSTANCE.updateUser(Integer.parseInt(request.getSession().getAttribute(ParamName.ID_USER_PARAM).toString()),
                     request.getParameter(ParamName.LOGIN_PARAM), request.getParameter(ParamName.EMAIL_PARAM),
                     request.getParameter(ParamName.FIRSTNAME_PARAM), request.getParameter(ParamName.LASTNAME_PARAM),

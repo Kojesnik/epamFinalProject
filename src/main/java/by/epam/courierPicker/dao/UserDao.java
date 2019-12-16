@@ -13,5 +13,6 @@ public interface UserDao extends BaseDao<Integer, User> {
     boolean updateLastNameById(String lastname, Integer idUser) throws DaoException;
     boolean updateEmailById(String email, Integer idUser) throws DaoException;
     boolean updatePasswordById(String password, Integer idUser) throws DaoException;
+    boolean updateStateById(Integer idUser, String state) throws DaoException;
 
 }

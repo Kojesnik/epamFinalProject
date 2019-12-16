@@ -2,6 +2,7 @@ package by.epam.courierPicker.dao.impl;
 
 import by.epam.courierPicker.connectionpool.ConnectionPool;
 import by.epam.courierPicker.connectionpool.ProxyConnection;
+import by.epam.courierPicker.constant.ParamName;
 import by.epam.courierPicker.dao.UserDao;
 import by.epam.courierPicker.entity.User;
 import by.epam.courierPicker.exception.DaoException;
@@ -13,6 +14,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.List;
 
 public enum UserDaoImpl implements UserDao {
@@ -43,6 +45,31 @@ public enum UserDaoImpl implements UserDao {
             "UPDATE user SET lastname = ? WHERE (id_user = ?)";
     private static final String SQL_UPDATE_PASSWORD_BY_ID =
             "UPDATE user SET password = ? WHERE (id_user = ?)";
+    private static final String SQL_SELECT_ALL =
+            "SELECT * FROM user";
+    private static final String SQL_UPDATE_STATE_BY_ID =
+            "UPDATE user SET state = ? WHERE (id_user = ?)";
+
+    @Override
+    public boolean updateStateById(Integer idUser, String state) throws DaoException {
+        ProxyConnection connection = null;
+        PreparedStatement statement = null;
+        try {
+            connection = ConnectionPool.INSTANCE.getConnection();
+            statement = connection.prepareStatement(SQL_UPDATE_STATE_BY_ID);
+            statement.setString(1, state);
+            statement.setInt(2, idUser);
+            statement.executeUpdate();
+            logger.info(SQL_UPDATE_STATE_BY_ID + " completed");
+            return true;
+        } catch (SQLException ex) {
+            logger.error(ex.getMessage());
+            throw new DaoException(ex.getMessage());
+        } finally {
+            close(statement);
+            ConnectionPool.INSTANCE.releaseConnection(connection);
+        }
+    }
 
     @Override
     public boolean updateLoginById(String login, Integer idUser) throws DaoException {
@@ -168,6 +195,7 @@ public enum UserDaoImpl implements UserDao {
                         .buildFirstName(resultSet.getString(5))
                         .buildLastName(resultSet.getString(6))
                         .buildRole(RoleType.valueOf(resultSet.getString(7).toUpperCase()))
+                        .buildState(resultSet.getString(8))
                         .build();
             }
             logger.info(SQL_SELECT_USER_BY_LOGIN + " completed");
@@ -242,8 +270,37 @@ public enum UserDaoImpl implements UserDao {
     }
 
     @Override
-    public List<User> findAll() {
-        return null;
+    public List<User> findAll() throws DaoException{
+        ProxyConnection connection = null;
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
+        List<User> users = null;
+        try {
+            users = new ArrayList();
+            connection = ConnectionPool.INSTANCE.getConnection();
+            statement = connection.prepareStatement(SQL_SELECT_ALL);
+            resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                User user = User.newBuilder().buildId(resultSet.getInt(1))
+                        .buildLogin(resultSet.getString(2))
+                        .buildEmail(resultSet.getString(4))
+                        .buildFirstName(resultSet.getString(5))
+                        .buildLastName(resultSet.getString(6))
+                        .buildRole(RoleType.valueOf(resultSet.getString(7).toUpperCase()))
+                        .buildState(resultSet.getString(8))
+                        .build();
+                users.add(user);
+            }
+            logger.info(SQL_SELECT_ALL + " completed");
+            return users;
+        } catch (SQLException ex) {
+            logger.warn(ex.getMessage());
+            throw new DaoException(ex.getMessage());
+        } finally {
+            close(statement);
+            close(resultSet);
+            ConnectionPool.INSTANCE.releaseConnection(connection);
+        }
     }
 
     @Override
@@ -268,6 +325,7 @@ public enum UserDaoImpl implements UserDao {
                         .build();
             }
             logger.info(SQL_SELECT_USER_BY_ID + " completed");
+            return user;
         } catch (SQLException ex) {
             logger.warn(ex.getMessage());
             throw new DaoException(ex.getMessage());
@@ -275,7 +333,6 @@ public enum UserDaoImpl implements UserDao {
             close(statement);
             close(resultSet);
             ConnectionPool.INSTANCE.releaseConnection(connection);
-            return user;
         }
     }
 
@@ -330,6 +387,7 @@ public enum UserDaoImpl implements UserDao {
                 id = resultSet.getInt(1);
             }
             logger.info(SQL_CREATE_USER + " completed");
+            return id;
         } catch (SQLException ex) {
             logger.warn(ex.getMessage());
             throw new DaoException(ex.getMessage());
@@ -337,7 +395,6 @@ public enum UserDaoImpl implements UserDao {
             close(statement);
             close(resultSet);
             ConnectionPool.INSTANCE.releaseConnection(connection);
-            return id;
         }
     }
 

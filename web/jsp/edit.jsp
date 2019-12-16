@@ -72,13 +72,10 @@
             </div>
             <div class="form-group">
                 <label><fmt:message key="password" />:</label> </br>
-                <input size="60" type="password" name="password" placeholder="<fmt:message key="enter_password" />"/> <font color="red" style="margin-left: 30px">${errorPasswordRegister}</font>
+                <input size="60" type="password" name="password" placeholder="<fmt:message key="enter_new_password" />"/> <font color="red" style="margin-left: 30px">${errorPasswordRegister}</font>
             </div>
             <div class="form-group">
                 <input size="60" type="password" name="password2" placeholder="<fmt:message key="repeat_password" />"/> <font color="red" style="margin-left: 30px">${errorPasswordRegister}</font>
-            </div>
-            <div class="form-group">
-                <input size="60" name="file" type="file" enctype="multipart/form-data">
             </div>
             <button type="submit" class="btn btn-default"><fmt:message key="save" /></button>
         </form>

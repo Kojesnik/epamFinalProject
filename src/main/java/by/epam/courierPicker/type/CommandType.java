@@ -83,24 +83,6 @@ public enum CommandType {
         }
     },
 
-    ADMIN_BUTTON {
-        {
-            this.command = new AdminButtonCommand();
-        }
-    },
-
-    COURIER_BUTTON {
-        {
-            this.command = new CourierButtonCommand();
-        }
-    },
-
-    USER_BUTTON {
-        {
-            this.command = new UserButtonCommand();
-        }
-    },
-
     FINISH_COURIER_OFFER {
         {
             this.command = new FinishCourierOfferCommand();
@@ -159,11 +141,36 @@ public enum CommandType {
         {
             this.command = new UpdateProfileCommand();
         }
+    },
+
+    BLOCK_USER {
+        {
+            this.command = new BlockUserCommand();
+        }
+    },
+
+    UNBLOCK_USER {
+        {
+            this.command = new UnblockUserCommand();
+        }
+    },
+
+    ADD_ADMIN {
+        {
+            this.command = new AddAdminCommand();
+        }
+    },
+
+    FIND_COURIER_OFFERS_BY_PARAMETERS {
+        {
+            this.command = new FindCourierOffersByParametersCommand();
+        }
     }
 
     ;
 
     ActionCommand command;
+
     public ActionCommand getCommand() {
         return command;
     }

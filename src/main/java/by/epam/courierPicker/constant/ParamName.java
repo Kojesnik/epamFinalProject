@@ -23,7 +23,6 @@ public class ParamName {
     public static final String COMMENT_PARAM = "comment";
     public static final String STATUS_AUTORESIZED_PARAM = "autoresized";
     public static final String NEEDED_COURIER_NUMBER_PARAM = "needed_courier_number";
-    public static final String BUTTON_PARAM = "button";
     public static final String USER_PARAM = "user";
     public static final String COURIER_PARAM = "courier";
     public static final String ADMIN_PARAM = "admin";
@@ -32,7 +31,8 @@ public class ParamName {
     public static final String DRIVER_PARAM = "driver";
     public static final String URL_PARAM = "url";
     public static final String EMPTY_PARAM = "";
-
+    public static final String STATUS_BLOCKED_PARAM = "blocked";
+    public static final String STATUS_ACTIVE_PARAM = "active";
 
     private ParamName() {}
 

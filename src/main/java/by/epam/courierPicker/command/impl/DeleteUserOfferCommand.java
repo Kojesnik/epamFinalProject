@@ -21,7 +21,7 @@ public class DeleteUserOfferCommand implements ActionCommand {
         try {
             logger.info("DeleteUserOfferCommand executed");
             UserOfferLogic.INSTANCE.deleteUserOffer(Integer.parseInt(request.getParameter(ParamName.ID_OFFER_PARAM)));
-            request.setAttribute(AttributeName.REDIRECT, "?command=user_button&button=user_offers");
+            request.setAttribute(AttributeName.REDIRECT, "?command=account_command");
             logger.info("Redirect to user offers");
             return "";
         } catch (LogicException ex) {

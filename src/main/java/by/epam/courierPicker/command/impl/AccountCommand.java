@@ -30,16 +30,27 @@ public class AccountCommand implements ActionCommand {
             request.setAttribute(ParamName.EMAIL_PARAM, user.getEmail());
             request.setAttribute(ParamName.FIRSTNAME_PARAM, user.getFirstName());
             request.setAttribute(ParamName.LASTNAME_PARAM, user.getLastName());
+            Map req;
             switch (request.getSession().getAttribute(ParamName.ROLE_PARAM).toString()) {
                 case ParamName.USER_PARAM:
                     page = Path.USER_PAGE_PATH;
+                    req = ButtonLogic.INSTANCE.userButtons(Integer.parseInt(request.getSession().getAttribute(ParamName.ID_USER_PARAM).toString()));
+                    request.setAttribute(AttributeName.OFFER_MAP, req.get(AttributeName.OFFER_MAP));
+                    request.setAttribute(AttributeName.ACTIVE_OFFERS, req.get(AttributeName.ACTIVE_OFFERS));
+                    request.setAttribute(AttributeName.ACTIVE_OFFER_MAP, req.get(AttributeName.ACTIVE_OFFER_MAP));
+                    request.setAttribute(AttributeName.PAST_OFFERS, req.get(AttributeName.PAST_OFFERS));
+                    request.setAttribute(AttributeName.PAST_OFFER_MAP, req.get(AttributeName.PAST_OFFER_MAP));
                     break;
                 case ParamName.ADMIN_PARAM:
                     page = Path.ADMIN_PAGE_PATH;
+                    req = ButtonLogic.INSTANCE.adminButtons();
+                    request.setAttribute(AttributeName.COURIER_OFFERS, req.get(AttributeName.COURIER_OFFERS));
+                    request.setAttribute(AttributeName.USER_OFFERS, req.get(AttributeName.USER_OFFERS));
+                    request.setAttribute(AttributeName.USER_MAP, req.get(AttributeName.USER_MAP));
                     break;
                 case ParamName.COURIER_PARAM:
                     page = Path.COURIER_PAGE_PATH;
-                    Map req = ButtonLogic.INSTANCE.courierButtons(Integer.parseInt(request.getSession().getAttribute(ParamName.ID_USER_PARAM).toString()));
+                    req = ButtonLogic.INSTANCE.courierButtons(Integer.parseInt(request.getSession().getAttribute(ParamName.ID_USER_PARAM).toString()));
                     request.setAttribute(AttributeName.ACTIVE_OFFERS, req.get(AttributeName.ACTIVE_OFFERS));
                     request.setAttribute(AttributeName.ACTIVE_OFFER_MAP, req.get(AttributeName.ACTIVE_OFFER_MAP));
                     request.setAttribute(AttributeName.PAST_OFFERS, req.get(AttributeName.PAST_OFFERS));

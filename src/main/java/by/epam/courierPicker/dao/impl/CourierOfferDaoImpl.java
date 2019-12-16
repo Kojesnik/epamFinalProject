@@ -35,7 +35,7 @@ public enum CourierOfferDaoImpl implements CourierOfferDao {
     private static final String SQL_UPDATE_STATUS_BY_ID =
             "UPDATE courierPicker.courier_offer SET status = ? WHERE (id_offer = ?)";
     private static final String SQL_SELECT_OFFERS_BY_COURIER_ID_AND_STATUS =
-            "SELECT id_offer,courier_offer_user.id_user,accept_date,finish_date,courier_offer.comment,courier_offer_user.comment FROM courier_offer INNER JOIN courier_offer_user USING (id_offer) WHERE (courier_offer.id_user = ?) AND (courier_offer_user.status = ?)";
+            "SELECT id_offer,courier_offer_user.id_user,accept_date,finish_date,courier_offer.comment,courier_offer_user.comment FROM courier_offer INNER JOIN courier_offer_user USING (id_offer) WHERE (courier_offer.id_user = ?) AND (courier_offer_user.status = ?) AND (courier_offer.status != ?)";
     private static final String SQL_SELECT_OFFERS_BY_USER_ID_AND_STATUS =
             "SELECT id_offer, courier_offer.id_user, accept_date,finish_date,courier_offer_user.comment,courier_offer.comment FROM courier_offer INNER JOIN courier_offer_user USING (id_offer) WHERE (courier_offer_user.id_user = ?) AND (courier_offer_user.status = ?)";
     private static final String SQL_ADD_GOODS_TO_OFFER =
@@ -321,6 +321,7 @@ public enum CourierOfferDaoImpl implements CourierOfferDao {
             statement = connection.prepareStatement(SQL_SELECT_OFFERS_BY_COURIER_ID_AND_STATUS);
             statement.setInt(1, idUser);
             statement.setString(2, ParamName.STATUS_FINISHED_PARAM);
+            statement.setString(3, ParamName.STATUS_ACCEPTED_PARAM);
             resultSet = statement.executeQuery();
             while (resultSet.next()) {
                 CourierOffer courierOffer = new CourierOffer(resultSet.getInt(2), ParamName.STATUS_APPROVED_PARAM);
@@ -332,6 +333,7 @@ public enum CourierOfferDaoImpl implements CourierOfferDao {
                 courierOffers.add(courierOffer);
             }
             logger.info(SQL_SELECT_OFFERS_BY_COURIER_ID_AND_STATUS + " completed");
+            return courierOffers;
         } catch (SQLException ex) {
             logger.warn(ex.getMessage());
             throw new DaoException(ex.getMessage());
@@ -339,7 +341,6 @@ public enum CourierOfferDaoImpl implements CourierOfferDao {
             close(statement);
             close(resultSet);
             ConnectionPool.INSTANCE.releaseConnection(connection);
-            return courierOffers;
         }
     }
 
@@ -422,6 +423,7 @@ public enum CourierOfferDaoImpl implements CourierOfferDao {
             statement = connection.prepareStatement(SQL_SELECT_OFFERS_BY_COURIER_ID_AND_STATUS);
             statement.setInt(1, idUser);
             statement.setString(2, ParamName.STATUS_ACCEPTED_PARAM);
+            statement.setString(3, ParamName.STATUS_DELETED_PARAM);
             resultSet = statement.executeQuery();
             while (resultSet.next()) {
                 CourierOffer courierOffer = new CourierOffer(resultSet.getInt(2), ParamName.STATUS_APPROVED_PARAM);

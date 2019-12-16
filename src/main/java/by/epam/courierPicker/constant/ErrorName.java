@@ -11,6 +11,7 @@ public class ErrorName {
     public static final String INCORRECT_LASTNAME = "Incorrect lastname";
     public static final String INCORRECT_FIRSTNAME = "Incorrect firstname";
     public static final String PASSWORDS_NOT_EQUAL = "Passwords not equal";
+    public static final String USER_BLOCKED = "Your account blocked by admin";
 
     private ErrorName() {}
 

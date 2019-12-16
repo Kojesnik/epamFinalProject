@@ -22,7 +22,7 @@ public class ApproveUserOfferCommand implements ActionCommand {
             logger.info("ApproveUserOfferCommand executed");
             String page = Path.ADMIN_PAGE_PATH;
             UserOfferLogic.INSTANCE.approveUserOffer(Integer.parseInt(request.getParameter(ParamName.ID_OFFER_PARAM)));
-            request.setAttribute(AttributeName.REDIRECT, "?command=admin_button&button=user_offers");
+            request.setAttribute(AttributeName.REDIRECT, "?command=account_command");
             logger.info("Redirect to " + page);
             return page;
         } catch (LogicException ex) {
