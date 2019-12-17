@@ -165,6 +165,12 @@ public enum CommandType {
         {
             this.command = new FindCourierOffersByParametersCommand();
         }
+    },
+
+    FIND_USER_OFFERS_BY_PARAMETERS {
+        {
+            this.command = new FindUserOffersByParametersCommand();
+        }
     }
 
     ;

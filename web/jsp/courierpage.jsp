@@ -129,17 +129,13 @@
                     </select>
                 </div>
                 <div class="form-group">
-                    <label>Comment:</label></br>
+                    <label><fmt:message key="comment" />:</label></br>
                     <textarea name="comment" class="form-control" rows="5"></textarea>
                 </div>
                 <button type="submit" class="btn btn-default"><fmt:message key="send" /></button>
             </form>
         </div>
         <div id="menu1" class="tab-pane fade in">
-            <center>
-                <h3>Your offers table</h3>
-                <p>Here u can see all your offers, status, user responses</p>
-            </center>
             <c:choose>
                 <c:when test="${empty offerMap}">
                     <center>
@@ -150,11 +146,11 @@
                     <table class="table table-striped" id="yourOffers">
                         <thead>
                             <tr>
-                                <th>Transport</th>
-                                <th>Goods</th>
-                                <th>Comment</th>
-                                <th>Status</th>
-                                <th>Responses</th>
+                                <th><fmt:message key="transport" /></th>
+                                <th><fmt:message key="goods" /></th>
+                                <th><fmt:message key="comment" /></th>
+                                <th><fmt:message key="status" /></th>
+                                <th><fmt:message key="responses" /></th>
                                 <th>&times;</th>
                             </tr>
                         </thead>
@@ -225,10 +221,6 @@
             </c:choose>
         </div>
         <div id="menu2" class="tab-pane fade">
-            <center>
-                <h3>Active offers table</h3>
-                <p>Here u can see all your active offers</p>
-            </center>
             <c:choose>
                 <c:when test="${empty activeOffers}">
                     <center>
@@ -239,10 +231,10 @@
                     <table class="table table-striped">
                         <thead>
                         <tr>
-                            <th>Offer Info</th>
-                            <th>Comment</th>
-                            <th>User info</th>
-                            <th>Start date</th>
+                            <th><fmt:message key="offer" /></th>
+                            <th><fmt:message key="comment" /></th>
+                            <th><fmt:message key="user" /></th>
+                            <th><fmt:message key="start_date" /></th>
                             <th>&times;</th>
                         </tr>
                         </thead>
@@ -367,10 +359,6 @@
             </c:choose>
         </div>
         <div id="menu3" class="tab-pane fade">
-            <center>
-                <h3>Past offers table</h3>
-                <p>Here u can see all your past offers</p>
-            </center>
             <c:choose>
                 <c:when test="${empty pastOffers}">
                     <center>
@@ -381,11 +369,11 @@
                     <table class="table table-striped">
                         <thead>
                         <tr>
-                            <th>Offer Info</th>
-                            <th>Comment</th>
-                            <th>User info</th>
-                            <th>Start date</th>
-                            <th>Finish date</th>
+                            <th><fmt:message key="offer" /></th>
+                            <th><fmt:message key="comment" /></th>
+                            <th><fmt:message key="user" /></th>
+                            <th><fmt:message key="start_date" /></th>
+                            <th><fmt:message key="finish_date" /></th>
                         </tr>
                         </thead>
                         <tbody>

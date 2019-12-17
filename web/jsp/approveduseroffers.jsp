@@ -59,8 +59,8 @@
                 <li class="dropdown">
                     <a class="dropdown-toggle" href="#" data-toggle="dropdown"><fmt:message key="lang" /> <span class="glyphicon glyphicon-globe"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="${pageContext.session.servletContext.contextPath}/controller?command=change_language&lang=ru&jsp=main.jsp">RU</a></li>
-                        <li><a href="${pageContext.session.servletContext.contextPath}/controller?command=change_language&lang=en&jsp=main.jsp">EN</a></li>
+                        <li><a href="${pageContext.session.servletContext.contextPath}/controller?command=change_language&lang=ru&jsp=approveduseroffers.jsp">RU</a></li>
+                        <li><a href="${pageContext.session.servletContext.contextPath}/controller?command=change_language&lang=en&jsp=approveduseroffers.jsp">EN</a></li>
                     </ul>
                 </li>
             </ul>
@@ -68,10 +68,6 @@
     </div>
 </nav>
 
-<center>
-    <h3>User offers</h3>
-    <p>Here u can find all user offers that are available to you. Look through and send your offer</p>
-</center>
 <c:choose>
     <c:when test="${empty offerMap}">
         <center>
@@ -82,12 +78,12 @@
         <table class="table table-striped" id="userOffers">
             <thead>
             <tr>
-                <th>Goods</th>
-                <th>Needed courier number</th>
-                <th>Active courier number</th>
-                <th>User info</th>
-                <th>Comment</th>
-                <th>Send offer</th>
+                <th><fmt:message key="goods" /></th>
+                <th><fmt:message key="needed_courier_number" /></th>
+                <th><fmt:message key="active_courier_number" /></th>
+                <th><fmt:message key="user" /></th>
+                <th><fmt:message key="comment" /></th>
+                <th><fmt:message key="send_offer" /></th>
             </tr>
             </thead>
             <tbody>
@@ -153,6 +149,44 @@
         </table>
     </c:otherwise>
 </c:choose>
+
+<button style="margin-left: 30px" class="btn btn-default" data-toggle="collapse" data-target="#find"><fmt:message key="select_params" /></button>
+
+<div style="padding-top: 30px" id="find" class="collapse">
+    <form action="${pageContext.session.servletContext.contextPath}/controller" method="POST">
+        <input type="hidden" name="command" value="find_user_offers_by_parameters">
+        <div style="width: 30%; float: left; padding-left: 30px">
+            <button type="button" class="btn btn-default" data-toggle="collapse" data-target="#goods"><fmt:message key="goods" /></button>
+            <div id="goods" class="collapse">
+                <div style="width: 50%; float: left">
+                    <div class="radio">
+                        <label><input type="checkbox" name="package" value="food"><fmt:message key="food" /></label>
+                    </div>
+                    <div class="radio">
+                        <label><input type="checkbox" name="package" value="clothes"><fmt:message key="clothes" /></label>
+                    </div>
+                    <div class="radio">
+                        <label><input type="checkbox" name="package" value="medicine"><fmt:message key="medicine" /></label>
+                    </div>
+                </div>
+                <div style="width: 50%; float: right; padding-left: 15px">
+                    <div class="radio">
+                        <label><input type="checkbox" name="package" value="technics"><fmt:message key="technics" /></label>
+                    </div>
+                    <div class="radio">
+                        <label><input type="checkbox" name="package" value="home"><fmt:message key="homegoods" /></label>
+                    </div>
+                    <div class="radio">
+                        <label><input type="checkbox" name="package" value="cosmetics"><fmt:message key="cosmetics" /></label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div style="width: 30%; float: left; margin-left: 30px">
+            <button type="submit" class="btn btn-default"><fmt:message key="search" /></button>
+        </div>
+    </form>
+</div>
 
 </body>
 </html>
