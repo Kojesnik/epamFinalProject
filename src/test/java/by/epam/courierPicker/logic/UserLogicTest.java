@@ -4,7 +4,6 @@ import by.epam.courierPicker.constant.ParamName;
 import by.epam.courierPicker.entity.User;
 import by.epam.courierPicker.exception.LogicException;
 import by.epam.courierPicker.type.RoleType;
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import java.util.HashMap;
@@ -13,11 +12,6 @@ import java.util.Map;
 import static org.testng.Assert.*;
 
 public class UserLogicTest {
-
-    @BeforeClass
-    public void init() {
-
-    }
 
     @Test
     public void testLoginUser() {
@@ -65,13 +59,30 @@ public class UserLogicTest {
 
     @Test
     public void testUpdateUser() {
+        Map req = new HashMap();
+        req.put(ParamName.ID_USER_PARAM, 7);
+        try {
+            assertEquals(UserLogic.INSTANCE.updateUser(7, "", "", "Misha", "Kolosss", "", ""), req);
+        } catch (LogicException e) {
+
+        }
     }
 
     @Test
     public void testBlockUser() {
+        try {
+            assertEquals(UserLogic.INSTANCE.blockUser(7), true);
+        } catch (LogicException e) {
+
+        }
     }
 
     @Test
     public void testUnblockUser() {
+        try {
+            assertEquals(UserLogic.INSTANCE.unblockUser(7), true);
+        } catch (LogicException e) {
+
+        }
     }
 }
