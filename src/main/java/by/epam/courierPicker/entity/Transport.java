@@ -1,7 +1,5 @@
 package by.epam.courierPicker.entity;
 
-import java.util.Properties;
-
 public class Transport extends Entity {
 
     private Integer id;

@@ -77,9 +77,7 @@ public enum ConnectionPool {
     public void destroyConnectionPool() {
         for (int i = 0; i < DEFAULT_POOL_SIZE; i++) {
             try {
-                freeConnections.take().close();
-            } catch (SQLException e) {
-                logger.warn(e.getMessage());
+                freeConnections.take().finalClose();
             } catch (InterruptedException e) {
                 logger.error(e.getMessage());
             }
