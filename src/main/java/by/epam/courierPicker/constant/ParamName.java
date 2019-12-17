@@ -33,6 +33,8 @@ public class ParamName {
     public static final String EMPTY_PARAM = "";
     public static final String STATUS_BLOCKED_PARAM = "blocked";
     public static final String STATUS_ACTIVE_PARAM = "active";
+    public static final String LANG_RU = "ru";
+    public static final String LANG_EN = "en";
 
     private ParamName() {}
 

@@ -35,6 +35,7 @@ public class Controller extends HttpServlet {
     }
 
     private void processRequest(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        System.out.println("controller");
         req.getSession().setMaxInactiveInterval(10 * 60);
         String page;
         ActionFactory client = new ActionFactory();

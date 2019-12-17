@@ -1,6 +1,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
+<%@ taglib prefix="welcometag" uri="customtags" %>
 <fmt:setLocale value="${lang}" scope="session"/>
 <fmt:bundle basename="pageContent" prefix="label." >
         <html>
@@ -71,71 +72,77 @@
     </nav>
 
     <div class="container" style="padding-top: 60px">
+        <center>
+            <h2><welcometag:hello role="${role}" lang="${lang}"/></h2>
+        </center>
+    </div>
+
+    <div class="container" style="padding-top: 60px">
         <div class="jumbotron">
-            <h2>Удобный сервис для курьеров и заказчиков</h2>
-            <p>Все просто и быстро</p>
+            <h2><fmt:message key="jumbotron1.h2" /></h2>
+            <p><fmt:message key="jumbotron1.p" /></p>
         </div>
     </div>
 
     <div class="container">
         <div class="page-header">
-            <h1>Сервис глазами заказчика</h1>
+            <h1><fmt:message key="pageheader1" /></h1>
         </div>
         <div style="width: 33%;float: left">
-            <p>1.Разместите заявку</p>
-            <p style="margin-left: 20px"><span class="glyphicon glyphicon-bookmark" />      Укажите что нужно доставить</p>
-            <p style="margin-left: 20px"><span class="glyphicon glyphicon-bookmark" />      Укажите количество курьеров</p>
-            <p style="margin-left: 20px"><span class="glyphicon glyphicon-bookmark" />      Оставьте ваш комментарий к заявке</p>
+            <p><fmt:message key="pageheader1.div1.p1" /></p>
+            <p style="margin-left: 20px"><span class="glyphicon glyphicon-bookmark" />      <fmt:message key="pageheader1.div1.p2" /></p>
+            <p style="margin-left: 20px"><span class="glyphicon glyphicon-bookmark" />      <fmt:message key="pageheader1.div1.p3" /></p>
+            <p style="margin-left: 20px"><span class="glyphicon glyphicon-bookmark" />      <fmt:message key="pageheader1.div1.p4" /></p>
         </div>
         <div style="width: 33%;float: right">
-            <p>3.Выберите курьера для заказа</p>
-            <p style="margin-left: 20px"><span class="glyphicon glyphicon-bookmark" />      Сравниваете предложения курьеров</p>
-            <p style="margin-left: 20px"><span class="glyphicon glyphicon-bookmark" />      Выбираете нужного курьера</p>
-            <p style="margin-left: 20px"><span class="glyphicon glyphicon-bookmark" />      Приклепляете его к заказу</p>
+            <p><fmt:message key="pageheader1.div2.p1" /></p>
+            <p style="margin-left: 20px"><span class="glyphicon glyphicon-bookmark" />      <fmt:message key="pageheader1.div2.p2" /></p>
+            <p style="margin-left: 20px"><span class="glyphicon glyphicon-bookmark" />      <fmt:message key="pageheader1.div2.p3" /></p>
+            <p style="margin-left: 20px"><span class="glyphicon glyphicon-bookmark" />      <fmt:message key="pageheader1.div2.p4" /></p>
         </div>
         <div style="width: 33%;float: right">
-            <p>2.Получайте предложения</p>
-            <p style="margin-left: 20px"><span class="glyphicon glyphicon-bookmark" />      Курьеры предлагают свои услуги</p>
-            <p style="margin-left: 20px"><span class="glyphicon glyphicon-bookmark" />      Вы получаете уведомление</p>
-            <p style="margin-left: 20px"><span class="glyphicon glyphicon-bookmark" />      Просматриваете их комментарий</p>
+            <p><fmt:message key="pageheader1.div3.p1" /></p>
+            <p style="margin-left: 20px"><span class="glyphicon glyphicon-bookmark" />      <fmt:message key="pageheader1.div3.p2" /></p>
+            <p style="margin-left: 20px"><span class="glyphicon glyphicon-bookmark" />      <fmt:message key="pageheader1.div3.p3" /></p>
+            <p style="margin-left: 20px"><span class="glyphicon glyphicon-bookmark" />      <fmt:message key="pageheader1.div3.p4" /></p>
         </div>
     </div>
 
     <div class="container" style="padding-top: 60px">
         <div class="jumbotron">
-            <h2>Курьеры ждут ваших заявок</h2>
-            <p>Удобное и быстрое размещение заявок. Сотрудничество напрямую с курьером</p>
+            <h2><fmt:message key="jumbotron2.h2" /></h2>
+            <p><fmt:message key="jumbotron2.p" /></p>
         </div>
     </div>
 
     <div class="container">
         <div class="page-header">
-            <h1>Сервис глазами курьера</h1>
+            <h1><fmt:message key="pageheader2" /></h1>
         </div>
         <div style="width: 33%;float: left">
-            <p>1.Разместите заявку</p>
-            <p style="margin-left: 20px"><span class="glyphicon glyphicon-bookmark" />      Укажите товары</p>
-            <p style="margin-left: 20px"><span class="glyphicon glyphicon-bookmark" />      Укажите транспорт</p>
-            <p style="margin-left: 20px"><span class="glyphicon glyphicon-bookmark" />      Оставьте ваш комментарий к заявке</p>
+            <p><fmt:message key="pageheader2.div1.p1" /></p>
+            <p style="margin-left: 20px"><span class="glyphicon glyphicon-bookmark" />      <fmt:message key="pageheader2.div1.p2" /></p>
+            <p style="margin-left: 20px"><span class="glyphicon glyphicon-bookmark" />      <fmt:message key="pageheader2.div1.p3" /></p>
+            <p style="margin-left: 20px"><span class="glyphicon glyphicon-bookmark" />      <fmt:message key="pageheader2.div1.p4" /></p>
         </div>
         <div style="width: 33%;float: right">
-            <p>3.Выберите курьера для заказа</p>
-            <p style="margin-left: 20px"><span class="glyphicon glyphicon-bookmark" />      Сравниваете предложения клиентов</p>
-            <p style="margin-left: 20px"><span class="glyphicon glyphicon-bookmark" />      Выбираете заказы</p>
-            <p style="margin-left: 20px"><span class="glyphicon glyphicon-bookmark" />      Начинаете сотрудничество</p>
+            <p><fmt:message key="pageheader2.div2.p1" /></p>
+            <p style="margin-left: 20px"><span class="glyphicon glyphicon-bookmark" />      <fmt:message key="pageheader2.div2.p2" /></p>
+            <p style="margin-left: 20px"><span class="glyphicon glyphicon-bookmark" />      <fmt:message key="pageheader2.div2.p3" /></p>
+            <p style="margin-left: 20px"><span class="glyphicon glyphicon-bookmark" />      <fmt:message key="pageheader2.div2.p4" /></p>
         </div>
         <div style="width: 33%;float: right">
-            <p>2.Получайте предложения</p>
-            <p style="margin-left: 20px"><span class="glyphicon glyphicon-bookmark" />      Клиенты предлагают работу</p>
-            <p style="margin-left: 20px"><span class="glyphicon glyphicon-bookmark" />      Вы получаете уведомление</p>
-            <p style="margin-left: 20px"><span class="glyphicon glyphicon-bookmark" />      Просматриваете их комментарий</p>
+            <p><fmt:message key="pageheader2.div3.p1" /></p>
+            <p style="margin-left: 20px"><span class="glyphicon glyphicon-bookmark" />      <fmt:message key="pageheader2.div3.p2" /></p>
+            <p style="margin-left: 20px"><span class="glyphicon glyphicon-bookmark" />      <fmt:message key="pageheader2.div3.p3" /></p>
+            <p style="margin-left: 20px"><span class="glyphicon glyphicon-bookmark" />      <fmt:message key="pageheader2.div3.p4" /></p>
         </div>
     </div>
 
     <div class="container" style="padding-top: 60px;padding-bottom: 60px">
         <div class="jumbotron">
-            <h2>Клиенты ждут ваших заявок</h2>
-            <p>Удобное и быстрое размещение заявок. Сотрудничество напрямую с клиентом</p>
+            <h2><fmt:message key="jumbotron3.h2" /></h2>
+            <p><fmt:message key="jumbotron3.p" /></p>
         </div>
     </div>
 

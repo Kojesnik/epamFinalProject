@@ -96,47 +96,39 @@
     </div>
 
     <ul class="nav nav-tabs">
-        <li class="active"><a data-toggle="tab" href="#home">Send offer</a></li>
-        <li><a data-toggle="tab" href="#menu1">Your offers</a></li>
-        <li><a data-toggle="tab" href="#menu2">Active offers</a></li>
-        <li><a data-toggle="tab" href="#menu3">Past offers</a></li>
+        <li class="active"><a data-toggle="tab" href="#home"><fmt:message key="send_offer" /></a></li>
+        <li><a data-toggle="tab" href="#menu1"><fmt:message key="your_offers" /></a></li>
+        <li><a data-toggle="tab" href="#menu2"><fmt:message key="active_offers" /></a></li>
+        <li><a data-toggle="tab" href="#menu3"><fmt:message key="past_offers" /></a></li>
     </ul>
 
     <div class="tab-content">
         <div id="home" class="tab-pane fade in active">
-            <center>
-                <h3>Send offer</h3>
-                <p>Here u can create new offer. Choose goods and comment to your offer</p>
-            </center>
             <form style="padding-left: 10%;padding-top: 2%;padding-right: 10%" name="userOffer" action="${pageContext.session.servletContext.contextPath}/controller" method="POST">
                 <input type="hidden" name="command" value="user_offer">
                 <div class="form-group">
-                    <label>Select type of packages:</label>
+                    <label><fmt:message key="select_goods" />:</label>
                     <select multiple class="form-control" name="package">
-                        <option value="food">Food</option>
-                        <option value="clothes">Clothes</option>
-                        <option value="medicine">Medicine</option>
-                        <option value="technics">Technics</option>
-                        <option value="home">Home goods</option>
-                        <option value="cosmetics">Cosmetics</option>
+                        <option value="food"><fmt:message key="food" /></option>
+                        <option value="clothes"><fmt:message key="clothes" /></option>
+                        <option value="medicine"><fmt:message key="medicine" /></option>
+                        <option value="technics"><fmt:message key="technics" /></option>
+                        <option value="home"><fmt:message key="homegoods" /></option>
+                        <option value="cosmetics"><fmt:message key="cosmetics" /></option>
                     </select>
                 </div>
                 <div class="form-group">
-                    <label>Courier number</label> </br>
+                    <label><fmt:message key="courier_number" /></label> </br>
                     <input type="text" name="needed_courier_number" value=""/>
                 </div>
                 <div class="form-group">
-                    <label>Comment:</label></br>
+                    <label><fmt:message key="comment" />:</label></br>
                     <textarea name="comment" class="form-control" rows="5"></textarea>
                 </div>
                 <button type="submit" class="btn btn-default"><fmt:message key="send" /></button>
             </form>
         </div>
         <div id="menu1" class="tab-pane fade in">
-            <center>
-                <h3>Your offers table</h3>
-                <p>Here u can see all your offers, status, courier responses</p>
-            </center>
             <c:choose>
                 <c:when test="${empty offerMap}">
                     <center>
@@ -147,11 +139,11 @@
                     <table class="table table-striped">
                         <thead>
                         <tr>
-                            <th>Goods</th>
-                            <th>Couriers</th>
-                            <th>Comment</th>
-                            <th>Status</th>
-                            <th>Responses</th>
+                            <th><fmt:message key="goods" /></th>
+                            <th><fmt:message key="courier" /></th>
+                            <th><fmt:message key="comment" /></th>
+                            <th><fmt:message key="status" /></th>
+                            <th><fmt:message key="responses" /></th>
                             <th>&times;</th>
                         </tr>
                         </thead>
@@ -225,10 +217,6 @@
             </c:choose>
         </div>
         <div id="menu2" class="tab-pane fade">
-            <center>
-                <h3>Active offers table</h3>
-                <p>Here u can see all your active offers</p>
-            </center>
             <c:choose>
                 <c:when test="${empty activeOffers}">
                     <center>
@@ -239,10 +227,10 @@
                     <table class="table table-striped">
                         <thead>
                         <tr class="norCell">
-                            <th>Offer Info</th>
-                            <th>Comment</th>
-                            <th>Courier info</th>
-                            <th>Start date</th>
+                            <th><fmt:message key="offer" /></th>
+                            <th><fmt:message key="comment" /></th>
+                            <th><fmt:message key="courier" /></th>
+                            <th><fmt:message key="start_date" /></th>
                             <th>&times;</th>
                         </tr>
                         </thead>
@@ -361,10 +349,6 @@
             </c:choose>
         </div>
         <div id="menu3" class="tab-pane fade">
-            <center>
-                <h3>Past offers table</h3>
-                <p>Here u can see all your past offers</p>
-            </center>
             <c:choose>
                 <c:when test="${empty pastOffers}">
                     <center>
@@ -375,11 +359,11 @@
                     <table class="table table-striped">
                         <thead>
                         <tr>
-                            <th>Offer Info</th>
-                            <th>Comment</th>
-                            <th>Courier info</th>
-                            <th>Start date</th>
-                            <th>Finish date</th>
+                            <th><fmt:message key="offer" /></th>
+                            <th><fmt:message key="comment" /></th>
+                            <th><fmt:message key="courier" /></th>
+                            <th><fmt:message key="start_date" /></th>
+                            <th><fmt:message key="finish_date" /></th>
                         </tr>
                         </thead>
                         <tbody>

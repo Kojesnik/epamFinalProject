@@ -82,8 +82,8 @@
             <div class="form-group">
                 <label><fmt:message key="role" />:</label> </br>
                 <select style="width: 400px" class="form-control" name="role" size="1">
-                    <option selected value="user">User</option>
-                    <option value="courier">Courier</option>
+                    <option selected value="user"><fmt:message key="user" /></option>
+                    <option value="courier"><fmt:message key="courier" /></option>
                 </select>
             </div>
             <button type="submit" class="btn btn-default"><fmt:message key="signup" /></button>

@@ -3,6 +3,12 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
          version="4.0">
+    <jsp-config>
+        <taglib>
+            <taglib-uri>customtags</taglib-uri>
+            <taglib-location>/tag/welcomeTag.tld</taglib-location>
+        </taglib>
+    </jsp-config>
     <error-page>
         <exception-type>java.lang.Throwable</exception-type>
         <location>/jsp/error.jsp</location>

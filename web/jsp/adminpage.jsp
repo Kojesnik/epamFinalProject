@@ -92,33 +92,33 @@
     </div>
 
     <ul class="nav nav-tabs">
-        <li class="active"><a data-toggle="tab" href="#home">Approve courier offers</a></li>
-        <li><a data-toggle="tab" href="#menu1">Approve user offers</a></li>
-        <li><a data-toggle="tab" href="#menu2">Users</a></li>
-        <li><a data-toggle="tab" href="#menu3">Add admin</a></li>
+        <li class="active"><a data-toggle="tab" href="#home"><fmt:message key="approve_courier_offers" /></a></li>
+        <li><a data-toggle="tab" href="#menu1"><fmt:message key="approve_user_offers" /></a></li>
+        <li><a data-toggle="tab" href="#menu2"><fmt:message key="users" /></a></li>
+        <li><a data-toggle="tab" href="#menu3"><fmt:message key="add_admin" /></a></li>
     </ul>
 
     <div class="tab-content">
         <div id="home" class="tab-pane fade in active">
             <center>
-                <h3>Approve courier offers</h3>
-                <p>Here u can see not approved courier offers and control them</p>
+                <h3><fmt:message key="approve_courier_offers" /></h3>
+                <p><fmt:message key="approve_courier_offers.p" /></p>
             </center>
             <c:choose>
                 <c:when test="${empty courierOffers}">
                     <center>
-                        <h1>There are no not approved offers</h1>
+                        <h1><fmt:message key="no_notapproved_offers" /></h1>
                     </center>
                 </c:when>
                 <c:otherwise>
                     <table class="table table-striped">
                         <thead>
                         <tr>
-                            <th>Courier Info</th>
-                            <th>Transport</th>
-                            <th>Goods</th>
-                            <th>Comment</th>
-                            <th>Approve</th>
+                            <th><fmt:message key="courier" /></th>
+                            <th><fmt:message key="transport" /></th>
+                            <th><fmt:message key="goods" /></th>
+                            <th><fmt:message key="comment" /></th>
+                            <th><fmt:message key="approve" /></th>
                         </tr>
                         </thead>
                         <tbody>
@@ -155,24 +155,24 @@
         </div>
         <div id="menu1" class="tab-pane fade in">
             <center>
-                <h3>Approve user offers</h3>
-                <p>Here u can see not approved user offers and control them</p>
+                <h3><fmt:message key="approve_user_offers" /></h3>
+                <p><fmt:message key="approve_user_offers.p" /></p>
             </center>
             <c:choose>
                 <c:when test="${empty userOffers}">
                     <center>
-                        <h1>There are no not approved offers</h1>
+                        <h1><fmt:message key="no_notapproved_offers" /></h1>
                     </center>
                 </c:when>
                 <c:otherwise>
                     <table class="table table-striped">
                         <thead>
                         <tr>
-                            <th>User Info</th>
-                            <th>Goods</th>
-                            <th>Courier number</th>
-                            <th>Comment</th>
-                            <th>Approve</th>
+                            <th><fmt:message key="user" /></th>
+                            <th><fmt:message key="goods" /></th>
+                            <th><fmt:message key="courier_number" /></th>
+                            <th><fmt:message key="comment" /></th>
+                            <th><fmt:message key="approve" /></th>
                         </tr>
                         </thead>
                         <tbody>
@@ -207,13 +207,13 @@
         </div>
         <div id="menu2" class="tab-pane fade">
             <center>
-                <h3>Users</h3>
-                <p>Here u can see all user information and control them</p>
+                <h3><fmt:message key="users" /></h3>
+                <p><fmt:message key="users.p" /></p>
             </center>
             <c:choose>
                 <c:when test="${empty userMap}">
                     <center>
-                        <h1>There are no users</h1>
+                        <h1><fmt:message key="no_users" /></h1>
                     </center>
                 </c:when>
                 <c:otherwise>
@@ -221,13 +221,13 @@
                         <thead>
                         <tr>
                             <th>Id</th>
-                            <th>Login</th>
-                            <th>Email</th>
-                            <th>Firstname</th>
-                            <th>Lastname</th>
-                            <th>Role</th>
-                            <th>Status</th>
-                            <th>Block</th>
+                            <th><fmt:message key="login" /></th>
+                            <th><fmt:message key="email" /></th>
+                            <th><fmt:message key="firstname" /></th>
+                            <th><fmt:message key="lastname" /></th>
+                            <th><fmt:message key="role" /></th>
+                            <th><fmt:message key="status" /></th>
+                            <th><fmt:message key="block" /></th>
                         </tr>
                         </thead>
                         <tbody>
@@ -274,11 +274,7 @@
             </c:choose>
         </div>
         <div id="menu3" class="tab-pane fade">
-            <center>
-                <h3>Create new admin account</h3>
-                <p>Here u can add a new admin</p>
-            </center>
-            <div class="container" style="align-content: center;padding-left: 26%">
+            <div class="container" style="align-content: center;padding-left: 26%; padding-top: 20px">
                 <form name="registerForm" method="POST" action="${pageContext.session.servletContext.contextPath}/controller" >
                     <input type="hidden" name="command" value="add_admin" />
                     <div class="form-group">

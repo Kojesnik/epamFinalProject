@@ -96,40 +96,36 @@
     </div>
 
     <ul class="nav nav-tabs">
-        <li class="active"><a data-toggle="tab" href="#home">Send offer</a></li>
-        <li><a data-toggle="tab" href="#menu1">Your offers</a></li>
-        <li><a data-toggle="tab" href="#menu2">Active offers</a></li>
-        <li><a data-toggle="tab" href="#menu3">Past offers</a></li>
+        <li class="active"><a data-toggle="tab" href="#home"><fmt:message key="send_offer" /></a></li>
+        <li><a data-toggle="tab" href="#menu1"><fmt:message key="your_offers" /></a></li>
+        <li><a data-toggle="tab" href="#menu2"><fmt:message key="active_offers" /></a></li>
+        <li><a data-toggle="tab" href="#menu3"><fmt:message key="past_offers" /></a></li>
     </ul>
 
     <div class="tab-content">
         <div id="home" class="tab-pane fade in active">
-            <center>
-                <h3>Send offer</h3>
-                <p>Here u can create new offer. Choose your transport, goods and comment to your offer</p>
-            </center>
             <form style="padding-left: 10%;padding-top: 2%;padding-right: 10%" role="form" name="courierOffer" action="${pageContext.session.servletContext.contextPath}/controller" method="POST">
                 <input type="hidden" name="command" value="courier_offer">
                 <div class="form-group">
-                    <label>Select transport:</label>
+                    <label><fmt:message key="select_transport" />:</label>
                     <select multiple class="form-control" name="transport">
-                        <option value="bicycle">Bicycle</option>
-                        <option value="car">Car</option>
-                        <option value="rollers">Rollers</option>
-                        <option value="motorbike">Motorbike</option>
-                        <option value="atv">ATV</option>
-                        <option value="drone">Drone</option>
+                        <option value="bicycle"><fmt:message key="bicycle" /></option>
+                        <option value="car"><fmt:message key="car" /></option>
+                        <option value="rollers"><fmt:message key="rollers" /></option>
+                        <option value="motorbike"><fmt:message key="motorbike" /></option>
+                        <option value="atv"><fmt:message key="atv" /></option>
+                        <option value="drone"><fmt:message key="drone" /></option>
                     </select>
                 </div>
                 <div class="form-group">
-                    <label>Select type of packages:</label>
+                    <label><fmt:message key="select_goods" />:</label>
                     <select multiple class="form-control" name="package">
-                        <option value="food">Food</option>
-                        <option value="clothes">Clothes</option>
-                        <option value="medicine">Medicine</option>
-                        <option value="technics">Technics</option>
-                        <option value="home">Home goods</option>
-                        <option value="cosmetics">Cosmetics</option>
+                        <option value="food"><fmt:message key="food" /></option>
+                        <option value="clothes"><fmt:message key="clothes" /></option>
+                        <option value="medicine"><fmt:message key="medicine" /></option>
+                        <option value="technics"><fmt:message key="technics" /></option>
+                        <option value="home"><fmt:message key="homegoods" /></option>
+                        <option value="cosmetics"><fmt:message key="cosmetics" /></option>
                     </select>
                 </div>
                 <div class="form-group">
