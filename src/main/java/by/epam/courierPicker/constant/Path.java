@@ -13,6 +13,7 @@ public class Path {
     public static final String EDIT_PATH = "/jsp/edit.jsp";
 
     public static final String DATABASE_INFO_FILE = "database.properties";
+    public static final String TEST_DATABASE_INFO_FILE = "testbd.properties";
 
     private Path() {}
 

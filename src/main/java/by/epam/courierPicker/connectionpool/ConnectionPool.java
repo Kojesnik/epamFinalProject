@@ -26,13 +26,16 @@ public enum ConnectionPool {
 
     private final Logger logger = LogManager.getLogger();
     private BlockingQueue<ProxyConnection> freeConnections = new LinkedBlockingQueue<>(DEFAULT_POOL_SIZE);
-    private Queue<ProxyConnection> givenConnections = new LinkedList<>();;
+    private Queue<ProxyConnection> givenConnections = new LinkedList<>();
+
+    public static boolean isTest = false;
 
     ConnectionPool() {
         try {
             Properties properties = new Properties();
             ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
-            InputStream input = classLoader.getResourceAsStream(Path.DATABASE_INFO_FILE);
+            InputStream input;
+            input = classLoader.getResourceAsStream(Path.DATABASE_INFO_FILE);
             properties.load(input);
             Class.forName(properties.getProperty(ParamName.DRIVER_PARAM));
             for (int i = 0; i < DEFAULT_POOL_SIZE; ++i) {

@@ -36,4 +36,26 @@ public class Goods extends Entity {
         sb.append('}');
         return sb.toString();
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || obj.getClass() != getClass()) {
+            return false;
+        }
+        Goods goods = (Goods) obj;
+        return (id != null && id.equals(goods.id))
+                && (type != null && type.equals(goods.type));
+    }
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = result * prime + ((id == null) ? 0 : id.hashCode());
+        result = result * prime + ((type == null) ? 0 : type.hashCode());
+        return result;
+    }
 }

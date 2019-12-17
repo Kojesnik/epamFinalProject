@@ -149,4 +149,35 @@ public class User extends Entity{
         sb.append('}');
         return sb.toString();
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || obj.getClass() != getClass()) {
+            return false;
+        }
+        User user = (User) obj;
+        return (id == user.id) && (login != null && login.equals(user.login))
+                && (password != null && password.equals(user.password))
+                && (firstName != null && firstName.equals(user.firstName))
+                && (lastName != null && lastName.equals(user.lastName))
+                && (email != null && email.equals(user.email))
+                && (role != null && role.equals(user.role));
+    }
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = result * prime + id;
+        result = result * prime + ((login == null) ? 0 : login.hashCode());
+        result = result * prime + ((password == null) ? 0 : password.hashCode());
+        result = result * prime + ((firstName == null) ? 0 : firstName.hashCode());
+        result = result * prime + ((lastName == null) ? 0 : lastName.hashCode());
+        result = result * prime + ((email == null) ? 0 : email.hashCode());
+        result = result * prime + ((role == null) ? 0 : role.hashCode());
+        return result;
+    }
 }

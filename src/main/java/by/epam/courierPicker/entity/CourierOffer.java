@@ -108,4 +108,38 @@ public class CourierOffer extends Entity{
         sb.append('}');
         return sb.toString();
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || obj.getClass() != getClass()) {
+            return false;
+        }
+        CourierOffer courierOffer = (CourierOffer) obj;
+        return (idOffer == courierOffer.idOffer) && (idUser == courierOffer.idUser) && (status != null && status.equals(courierOffer.status))
+                && (transport != null && transport.equals(courierOffer.transport))
+                && (goods != null && goods.equals(courierOffer.goods))
+                && (startDate != null && startDate.equals(courierOffer.startDate))
+                && (endDate != null && endDate.equals(courierOffer.endDate))
+                && (courierComment != null && courierComment.equals(courierOffer.courierComment))
+                && (userComment != null && userComment.equals(courierOffer.userComment));
+    }
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = result * prime + ((idUser == null) ? 0 : idUser.hashCode());
+        result = result * prime + ((idOffer == null) ? 0 : idOffer.hashCode());
+        result = result * prime + ((status == null) ? 0 : status.hashCode());
+        result = result * prime + ((transport == null) ? 0 : transport.hashCode());
+        result = result * prime + ((goods == null) ? 0 : goods.hashCode());
+        result = result * prime + ((startDate == null) ? 0 : startDate.hashCode());
+        result = result * prime + ((endDate == null) ? 0 : endDate.hashCode());
+        result = result * prime + ((courierComment == null) ? 0 : courierComment.hashCode());
+        result = result * prime + ((userComment == null) ? 0 : userComment.hashCode());
+        return result;
+    }
 }

@@ -112,4 +112,40 @@ public class UserOffer extends Entity {
         sb.append('}');
         return sb.toString();
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || obj.getClass() != getClass()) {
+            return false;
+        }
+        UserOffer userOffer = (UserOffer) obj;
+        return (idOffer == userOffer.idOffer) && (idUser == userOffer.idUser) && (status != null && status.equals(userOffer.status))
+                && (neededCourierNumber != null && neededCourierNumber.equals(userOffer.neededCourierNumber))
+                && (activeCourierNumber != null && activeCourierNumber.equals(userOffer.activeCourierNumber))
+                && (goods != null && goods.equals(userOffer.goods))
+                && (startDate != null && startDate.equals(userOffer.startDate))
+                && (endDate != null && endDate.equals(userOffer.endDate))
+                && (courierComment != null && courierComment.equals(userOffer.courierComment))
+                && (userComment != null && userComment.equals(userOffer.userComment));
+    }
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = result * prime + ((idUser == null) ? 0 : idUser.hashCode());
+        result = result * prime + ((idOffer == null) ? 0 : idOffer.hashCode());
+        result = result * prime + ((status == null) ? 0 : status.hashCode());
+        result = result * prime + ((neededCourierNumber == null) ? 0 : neededCourierNumber.hashCode());
+        result = result * prime + ((activeCourierNumber == null) ? 0 : activeCourierNumber.hashCode());
+        result = result * prime + ((goods == null) ? 0 : goods.hashCode());
+        result = result * prime + ((startDate == null) ? 0 : startDate.hashCode());
+        result = result * prime + ((endDate == null) ? 0 : endDate.hashCode());
+        result = result * prime + ((courierComment == null) ? 0 : courierComment.hashCode());
+        result = result * prime + ((userComment == null) ? 0 : userComment.hashCode());
+        return result;
+    }
 }
